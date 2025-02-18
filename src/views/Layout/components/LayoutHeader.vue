@@ -1,19 +1,10 @@
 <script setup>
 // import LayoutHeaderUl from './LayoutHeaderUl.vue'
 // import HeaderCart from './HeaderCart.vue'
-import { getCategoryAPI } from '@/apis/layout'
-import { onMounted,ref } from 'vue';
+import { useCategoryStore } from '@/stores/category'
 
-const categoryList = ref([])
-const getCategory = async () => {
-  const res = await getCategoryAPI()
-  console.log(res)
-  categoryList.value = res.result
-}
+const categoryStore = useCategoryStore()
 
-onMounted(() => {
-  getCategory()
-})
 </script>
 
 <template>
@@ -24,7 +15,7 @@ onMounted(() => {
       </h1>
 
       <ul class="app-header-nav">
-        <li class="home" v-for="item in categoryList" :key="item.id">
+        <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
           <RouterLink to="/">{{item.name}}</RouterLink>
         </li>
       </ul>

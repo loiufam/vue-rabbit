@@ -2,8 +2,11 @@
 // import LayoutHeaderUl from './LayoutHeaderUl.vue'
 // vueUse
 import { useScroll } from '@vueuse/core'
+import { useCategoryStore } from '@/stores/category'
 const { y } = useScroll(window)
 
+//使用pinia中的数据
+const categoryStore = useCategoryStore()
 
 </script>
 
@@ -12,6 +15,14 @@ const { y } = useScroll(window)
     <div class="container">
       <RouterLink class="logo" to="/" />
       <!-- 导航区域 -->
+      <ul class="app-header-nav">
+        <li class="home">
+          <RouterLink to="/">首页</RouterLink>
+        </li>
+        <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
+          <RouterLink to="/">{{item.name}}</RouterLink>
+        </li>
+      </ul>
 
       <!-- <LayoutHeaderUl /> -->
       <div class="right">
@@ -55,6 +66,17 @@ const { y } = useScroll(window)
     height: 80px;
     background: url("@/assets/images/logo.png") no-repeat right 2px;
     background-size: 160px auto;
+  }
+
+  .app-header-nav {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+    margin: 0 5px;
+
+    li {
+      list-style: none;
+    }
   }
 
   .right {
