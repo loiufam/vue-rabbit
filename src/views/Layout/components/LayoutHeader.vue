@@ -16,7 +16,7 @@ const categoryStore = useCategoryStore()
 
       <ul class="app-header-nav">
         <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
-          <RouterLink to="/">{{item.name}}</RouterLink>
+          <RouterLink active-class="active" :to="`/category/${item.id}`">{{item.name}}</RouterLink>
         </li>
       </ul>
       <!-- <LayoutHeaderUl /> -->
@@ -53,13 +53,33 @@ const categoryStore = useCategoryStore()
   }
 
   .app-header-nav {
+    width: 820px;
     display: flex;
-    justify-content: space-around;
-    flex-grow: 1;
-    margin: 0 5px;
+    padding-left: 40px;
+    position: relative;
+    z-index: 998;
 
     li {
-      list-style: none;
+      margin-right: 40px;
+      width: 38px;
+      text-align: center;
+
+      a {
+        font-size: 16px;
+        line-height: 32px;
+        height: 32px;
+        display: inline-block;
+
+        &:hover {
+          color: $xtxColor;
+          border-bottom: 1px solid $xtxColor;
+        }
+      }
+
+      .active {
+        color: $xtxColor;
+        border-bottom: 1px solid $xtxColor;
+      }
     }
   }
 
