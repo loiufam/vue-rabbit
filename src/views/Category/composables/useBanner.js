@@ -1,6 +1,6 @@
 // 封装banner轮播图业务实现
 import { ref, onMounted } from 'vue'
-import { getBannerAPI } from '@/api/category'
+import { getBannerAPI } from '@/apis/home'
 
 export function useBanner() {
   // 获取banner
